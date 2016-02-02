@@ -1,16 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.DefaultErrorComponent = DefaultErrorComponent;
-exports.DefaultLoadingComponent = DefaultLoadingComponent;
-exports.compose = compose;
-exports.composeWithTracker = composeWithTracker;
-exports.composeWithPromise = composeWithPromise;
-exports.composeWithObservable = composeWithObservable;
-exports.composeAll = composeAll;
-
 var _typeof2 = require('babel-runtime/helpers/typeof');
 
 var _typeof3 = _interopRequireDefault(_typeof2);
@@ -38,6 +27,17 @@ var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorRet
 var _inherits2 = require('babel-runtime/helpers/inherits');
 
 var _inherits3 = _interopRequireDefault(_inherits2);
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DefaultErrorComponent = DefaultErrorComponent;
+exports.DefaultLoadingComponent = DefaultLoadingComponent;
+exports.compose = compose;
+exports.composeWithTracker = composeWithTracker;
+exports.composeWithPromise = composeWithPromise;
+exports.composeWithObservable = composeWithObservable;
+exports.composeAll = composeAll;
 
 var _react = require('react');
 
@@ -79,7 +79,7 @@ function DefaultLoadingComponent() {
 }
 
 function compose(fn, L1, E1) {
-  var options = arguments.length <= 3 || arguments[3] === undefined ? { pure: true } : arguments[3];
+  var options = arguments.length <= 3 || arguments[3] === undefined ? { loaderProps: {}, pure: true } : arguments[3];
 
   return function (ChildComponent, L2, E2) {
     (0, _invariant2.default)(Boolean(ChildComponent), 'Should provide a child component to build the higher oder container.');
@@ -87,7 +87,7 @@ function compose(fn, L1, E1) {
     var LoadingComponent = L1 || L2 || DefaultLoadingComponent;
     var ErrorComponent = E1 || E2 || DefaultErrorComponent;
 
-    var Container = (function (_React$Component) {
+    var Container = function (_React$Component) {
       (0, _inherits3.default)(Container, _React$Component);
 
       function Container(props, context) {
@@ -139,7 +139,7 @@ function compose(fn, L1, E1) {
           }
 
           if (loading) {
-            return _react2.default.createElement(LoadingComponent, null);
+            return _react2.default.createElement(LoadingComponent, loaderProps);
           }
 
           return _react2.default.createElement(ChildComponent, this._getProps());
@@ -198,7 +198,7 @@ function compose(fn, L1, E1) {
         }
       }]);
       return Container;
-    })(_react2.default.Component);
+    }(_react2.default.Component);
 
     var childDisplayName =
     // Get the display name if it's set.
