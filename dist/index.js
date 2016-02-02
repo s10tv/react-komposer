@@ -139,7 +139,7 @@ function compose(fn, L1, E1) {
           }
 
           if (loading) {
-            return _react2.default.createElement(LoadingComponent, loaderProps);
+            return _react2.default.createElement(LoadingComponent, options.loaderProps);
           }
 
           return _react2.default.createElement(ChildComponent, this._getProps());
